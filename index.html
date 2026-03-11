@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Pronak Construction Limited | Roofing Contractors &amp; General Construction ? Nairobi, Kenya</title>
+    <!-- Font Awesome 6 (latest icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Inter (primary) + Syncopate -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: #0a0c12;
+            color: #e5e7eb;
+            line-height: 1.5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        input, textarea, button, select {
+            font-family: var(--font-primary);
+        }
+
+        :root {
+            --font-primary: "Inter", sans-serif;
+            --font-display: "Syncopate", sans-serif;
+            --rich-black: #0b0c10;
+            --midnight-blue: #1a2639;
+            --cobalt: #283b6b;
+            --golden-sand: #d4af37;
+            --light-ash: #1e2532;
+            --pure-white: #ffffff;
+            --soft-grey: #9ca3af;
+            --c-dark: #0f1117;
+            --c-red: #dc2626;
+            --c-green: #16a34a;
+            --c-blue: #2563eb;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 1rem; }
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--rich-black);
+            color: white;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, #ffffff 30%, var(--golden-sand) 80%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .logo span {
+            font-size: 0.9rem;
+            display: block;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--soft-grey);
+        }
+
+        .desktop-menu {
+            display: none;
+        }
+
+        .desktop-menu a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            position: relative;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        
+        .desktop-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--golden-sand);
+            transition: 0.3s;
+        }
+        
+        .desktop-menu a:hover:after {
+            width: 100%;
+        }
+        
+        .desktop-menu a:hover {
+            color: var(--golden-sand);
+        }
+
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--golden-sand);
+            background: transparent;
+            border: none;
+        }
+
+        .phone-mini {
+            background: transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--golden-sand);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        @media (max-width: 480px) {
+            .logo h1 { font-size: 1.5rem; }
+            .phone-mini { font-size: 1rem; padding: 0.45rem 0.75rem; }
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100vh;
+            background: var(--midnight-blue);
+            z-index: 2000;
+            padding: 2.5rem 2rem;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .close-btn {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            color: var(--golden-sand);
+            font-size: 2.2rem;
+            cursor: pointer;
+            margin-bottom: 3rem;
+        }
+
+        .side-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .side-menu-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 500;
+            transition: 0.2s;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .side-menu-links a:hover {
+            color: var(--golden-sand);
+            transform: translateX(-8px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(3px);
+            z-index: 1500;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Hero Section ? Full-viewport image carousel */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 7rem;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero-carousel {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            min-width: 100%;
+            min-height: 100%;
+            position: relative;
+        }
+
+        .hero-carousel-slide img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: auto;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        /* Minimal overlay: image stays clear like reference; only darken where text sits */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                transparent 45%,
+                rgba(11,12,16,0.12) 70%,
+                rgba(11,12,16,0.52) 100%);
+            z-index: 1;
+        }
+
+        .hero-overlay::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(11,12,16,0.75) 0%, rgba(11,12,16,0.2) 50%, transparent 85%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .hero-content {
+            flex: 0 1 auto;
+            max-width: 640px;
+            text-align: center;
+        }
+        
+        .hero-content h2 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 2px 12px rgba(0,0,0,0.6), 0 4px 28px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content .highlight {
+            color: var(--golden-sand);
+            border-bottom: 4px solid currentColor;
+            display: inline-block;
+            font-size: 1.08em;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p.hero-proof {
+            margin: 0.5rem 0 0.25rem;
+        }
+        .hero-content p:not(.hero-proof) {
+            font-size: 1.15rem;
+            margin: 1.5rem auto 2rem;
+            opacity: 1;
+            max-width: 540px;
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.6);
+        }
+
+        .hero-phone-mobile {
+            display: none;
+        }
+        @media (max-width: 1023px) {
+            .hero {
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding-top: 4.5rem;
+                padding-bottom: 6rem;
+            }
+            .hero-grid {
+                align-items: center;
+                justify-content: center;
+                padding-top: 0;
+                width: 100%;
+            }
+            .hero-phone-mobile {
+                display: inline-flex;
+                margin-left: auto;
+                margin-right: auto;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 1.25rem;
+                padding: 0.65rem 1.1rem;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.12);
+                border: 1px solid rgba(255, 255, 255, 0.7);
+                color: #fff;
+                font-weight: 600;
+                font-size: 1rem;
+                text-decoration: none;
+                min-height: 48px;
+                box-sizing: border-box;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+            }
+            .hero-phone-mobile:hover {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: #fff;
+                color: #fff;
+            }
+        }
+
+        .hero .btn-group {
+            justify-content: center;
+            margin-bottom: 5rem;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .btn-primary, .btn-outline {
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            border: 2px solid var(--golden-sand);
+            color: white;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--golden-sand);
+            color: var(--rich-black);
+        }
+        
+        .btn-primary:hover, .btn-outline:hover {
+            background: var(--golden-sand);
+            color: var(--rich-black);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.25);
+        }
+
+        .btn-outline { background: transparent; }
+        .btn-outline:hover { background: rgba(212,175,55,0.15); }
+
+        /* Carousel dots */
+        .hero-dots {
+            position: absolute;
+            bottom: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .hero-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: 2px solid rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-dot:hover { background: rgba(255,255,255,0.7); }
+
+        .hero-dot.active {
+            background: var(--golden-sand);
+            border-color: var(--golden-sand);
+            transform: scale(1.2);
+            box-shadow: 0 0 12px rgba(212,175,55,0.5);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 3.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 0.9rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 20;
+            text-decoration: none;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 22px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--golden-sand);
+        }
+        .scroll-down::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, var(--golden-sand), transparent);
+            border-radius: 2px;
+            animation: scroll-line 1.5s ease-in-out infinite;
+        }
+        @keyframes scroll-line {
+            0%, 100% { opacity: 0.4; height: 12px; }
+            50% { opacity: 1; height: 20px; }
+        }
+        .scroll-down i {
+            font-size: 1.5rem;
+            color: var(--golden-sand);
+            margin-top: 4px;
+        }
+        .hero-proof {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.92);
+            margin-top: 0.5rem;
+            font-weight: 500;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+        }
+        .hero-proof span { color: var(--golden-sand); }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-8px);}
+            60% {transform: translateX(-50%) translateY(-4px);}
+        }
+
+        /* Services Section ? Editorial alternating strips */
+        .services-extraordinary {
+            background: #fafafa;
+            color: #111827;
+            padding: 0;
+            position: relative;
+        }
+        .services-extraordinary .services-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .services-head {
+            padding: 4.5rem 2rem 3.5rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .services-head .services-title {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--golden-sand);
+            line-height: 1.25;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .services-head .services-lead {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #525252;
+            font-weight: 400;
+        }
+
+        .svc-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 340px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .svc-row:last-child { border-bottom: none; }
+        .svc-row.alt { direction: rtl; }
+        .svc-row.alt > * { direction: ltr; }
+        .svc-row-img {
+            position: relative;
+            min-height: 280px;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        .svc-row-img img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .svc-row-img img[src=""],
+        .svc-row-img img:not([src]) {
+            opacity: 0;
+        }
+        .svc-row-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2.5rem 3rem;
+            background: #fff;
+        }
+        .svc-row.alt .svc-row-content { background: #fafafa; }
+        .svc-num {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--golden-sand);
+            margin-bottom: 0.6rem;
+        }
+        .svc-row-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            margin-bottom: 0.5rem;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+        }
+        .svc-row-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #525252;
+            margin: 0;
+        }
+        @media (max-width: 900px) {
+            .svc-row,
+            .svc-row.alt {
+                grid-template-columns: 1fr;
+                direction: ltr;
+                min-height: auto;
+            }
+            .svc-row-img {
+                min-height: 240px;
+                order: -1;
+            }
+            .svc-row-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* How we work */
+        .how-we-work {
+            background: #fff;
+            padding: 5rem 0;
+            color: #111827;
+        }
+        .how-we-work .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .how-we-work-head {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .how-we-work-head h2 {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 700;
+            color: #0a0a0a;
+            margin-bottom: 0.5rem;
+        }
+        .how-we-work-head h2 span { color: var(--golden-sand); }
+        .how-we-work-head p {
+            font-size: 1rem;
+            color: #525252;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .how-we-work-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .how-we-work-step {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+        .how-we-work-step-num {
+            font-family: var(--font-display);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--golden-sand);
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .how-we-work-step h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            margin-bottom: 0.4rem;
+        }
+        .how-we-work-step p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #525252;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .how-we-work-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .how-we-work { padding: 3rem 0; }
+            .how-we-work-steps {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            .how-we-work-step { padding: 1.25rem 0.5rem; }
+        }
+
+        /* About Section (below Hero, above Services) */
+        .about-intro {
+            background: var(--rich-black);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-intro .about-intro-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 520px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .about-intro .about-intro-image {
+            position: relative;
+            min-height: 380px;
+        }
+        .about-intro .about-intro-image img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-intro .about-intro-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(11, 12, 16, 0.85) 0%, transparent 55%);
+        }
+        .about-intro .about-intro-content {
+            padding: 4rem 3.5rem 4rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .about-intro .about-intro-content .eyebrow {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--golden-sand);
+            margin-bottom: 1rem;
+        }
+        .about-intro .about-intro-content h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        .about-intro .about-intro-content h2 span {
+            color: var(--golden-sand);
+            border-bottom: 3px solid currentColor;
+        }
+        .about-intro .about-intro-content p {
+            font-size: 1.08rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.88);
+            margin-bottom: 2rem;
+            max-width: 520px;
+        }
+        .about-intro .about-intro-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem 3.5rem;
+        }
+        .about-intro .about-intro-stats .stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .about-intro .about-intro-stats .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--golden-sand);
+            line-height: 1.1;
+        }
+        .about-intro .about-intro-stats .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.25rem;
+        }
+        @media (max-width: 900px) {
+            .about-intro .about-intro-inner {
+                grid-template-columns: 1fr;
+            }
+            .about-intro .about-intro-image {
+                min-height: 280px;
+                order: -1;
+            }
+            .about-intro .about-intro-image::after {
+                background: linear-gradient(to top, rgba(11, 12, 16, 0.9) 0%, transparent 50%);
+            }
+            .about-intro .about-intro-content {
+                padding: 2.5rem 1.5rem 3rem;
+            }
+        }
+
+        /* Card Stack Section */
+        .display { font-family: var(--font-display); }
+        .stack-section .text-5xl { font-size: 3rem; line-height: 1; }
+        .stack-section .mb-2 { margin-bottom: 0.5rem; }
+        .stack-section .mt-4 { margin-top: 1rem; }
+        .stack-section .text-sm { font-size: 0.875rem; }
+        .stack-section .opacity-70 { opacity: 0.7; }
+        .stack-section .text-gray-400 { color: #9ca3af; }
+        .stack-section .text-left { text-align: left; }
+        .stack-section .border-b { border-bottom-width: 1px; }
+        .stack-section .border-white\/30 { border-color: rgba(255,255,255,0.3); }
+        .stack-section .pb-2 { padding-bottom: 0.5rem; }
+        .stack-section .w-max { width: max-content; }
+        .stack-section .card-view-link:hover { color: white; }
+        .stack-section .uppercase { text-transform: uppercase; }
+        .stack-section .tracking-widest { letter-spacing: 0.2em; }
+        .stack-section .card-view-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding: 0.25rem 0 0.75rem 0;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            font-family: var(--font-primary);
+        }
+        .stack-section .card-view-link:hover { border-color: var(--golden-sand); }
+        .stack-section .card-content {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .stack-section .card-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #9ca3af;
+            margin-top: 0.5rem;
+        }
+
+        .stack-section {
+            padding: 5rem 0;
+            background: var(--c-dark);
+            color: #E3E1DC;
+        }
+        
+        .stack-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .stack-heading .eyebrow {
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--golden-sand);
+            margin-bottom: 0.8rem;
+        }
+        
+        .stack-heading .main-title {
+            font-family: var(--font-primary);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stack-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 8vh;
+        }
+        
+        .card-item {
+            position: sticky;
+            top: 10vh;
+            height: auto;
+            min-height: 75vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5vh;
+        }
+        
+        .card-inner {
+            width: 90%;
+            height: auto;
+            background: #1a1f2b;
+            border: 1px solid rgba(212,175,55,0.15);
+            overflow: visible;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+        
+        .card-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #1a1f2b;
+        }
+        
+        .card-content h3 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .card-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s ease;
+            display: block;
+        }
+        
+        .card-inner:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        /* Most Viewed Designs Section */
+        .designs-section {
+            background: linear-gradient(145deg, #0f1420 0%, #1a2335 100%);
+            padding: 5rem 0;
+            color: white;
+        }
+        .designs-section .container {
+            max-width: 1200px;
+        }
+        .designs-section .section-head {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .designs-section .section-head h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #f9fafb;
+            margin-bottom: 0.5rem;
+        }
+        .designs-section .section-head h2 .gold-word {
+            color: var(--golden-sand);
+        }
+        .designs-section .section-head p {
+            font-size: 1.05rem;
+            color: #d1d5db;
+        }
+        .designs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+        .design-card {
+            background: #152238;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+            transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+        .design-card:hover {
+            box-shadow: 0 22px 48px rgba(15,23,42,0.9);
+            transform: translateY(-6px);
+            border-color: var(--golden-sand);
+        }
+        .design-card-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+        .design-card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .design-card-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--golden-sand);
+            color: #1a1a1a;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+        }
+        .design-card-brand {
+            position: absolute;
+            bottom: 0.75rem;
+            left: 1rem;
+            color: #15803d;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+        .design-card-brand small {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .design-card-brand.hide-on-card { display: none; }
+        .design-card-body {
+            padding: 1.35rem 1.25rem;
+        }
+        .design-card-body h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f9fafb;
+            margin-bottom: 0.5rem;
+        }
+        .design-card-body p {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            line-height: 1.5;
+            margin: 0;
+        }
+        @media (max-width: 900px) {
+            .designs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: #f3f4f6;
+            padding: 5rem 0;
+            border-top: 1px solid #e5e7eb;
+        }
+        .testimonials-section .container {
+            max-width: 1200px;
+        }
+        .testimonials-head {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .testimonials-head h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #111827;
+        }
+        .testimonials-head h2 span {
+            color: var(--golden-sand);
+        }
+        .testimonials-head p {
+            margin-top: 0.5rem;
+            font-size: 0.98rem;
+            color: #6b7280;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.7rem 1.6rem 1.6rem;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+            position: relative;
+        }
+        .testimonial-stars {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        .testimonial-quote {
+            font-size: 0.96rem;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 1.4rem;
+        }
+        .testimonial-card::after {
+            content: "?";
+            position: absolute;
+            right: 1.3rem;
+            top: 1.1rem;
+            font-size: 2.8rem;
+            color: rgba(209, 213, 219, 0.9);
+            font-weight: 700;
+        }
+        .testimonial-person {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        .testimonial-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: #fef3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #b45309;
+        }
+        .testimonial-meta strong {
+            display: block;
+            font-size: 0.95rem;
+            color: #111827;
+        }
+        .testimonial-meta span {
+            display: block;
+            font-size: 0.78rem;
+            color: #6b7280;
+        }
+
+        /* Google-style reviews: reviewer first, then stars, then text */
+        .testimonials-google-style .testimonial-card {
+            display: flex;
+            flex-direction: column;
+        }
+        .testimonials-google-style .testimonial-card::after {
+            display: none;
+        }
+        .testimonials-google-style .testimonial-person {
+            border-top: none;
+            padding-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .testimonials-google-style .testimonial-person .testimonial-avatar {
+            width: 32px;
+            height: 32px;
+            font-size: 0.85rem;
+        }
+        .testimonials-google-style .testimonial-meta strong {
+            font-size: 0.95rem;
+            color: #1f2937;
+        }
+        .testimonials-google-style .testimonial-meta-line {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-top: 0.15rem;
+        }
+        .testimonials-google-style .testimonial-stars {
+            margin-bottom: 0.5rem;
+        }
+        .testimonials-google-style .testimonial-quote {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Contact / Get in Touch Section */
+        .contact-section {
+            background: #0b101a;
+            padding: 5rem 0;
+        }
+        .contact-section .container {
+            max-width: 1200px;
+        }
+        .contact-head {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .contact-head h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #f9fafb;
+        }
+        .contact-head p {
+            margin-top: 0.5rem;
+            font-size: 0.98rem;
+            color: #9ca3af;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+            gap: 2rem;
+            align-items: stretch;
+        }
+        .contact-form-card {
+            background: #111827;
+            border-radius: 18px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+        }
+        .contact-form-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #f9fafb;
+        }
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        .contact-form-grid .full {
+            grid-column: 1 / -1;
+        }
+        .form-field label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #9ca3af;
+            margin-bottom: 0.3rem;
+        }
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            border-radius: 0.75rem;
+            border: 1px solid #374151;
+            background: #020617;
+            color: #f9fafb;
+            padding: 0.7rem 0.9rem;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-field textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+        .form-field input:focus,
+        .form-field textarea:focus {
+            border-color: var(--golden-sand);
+            box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.6);
+        }
+        .contact-submit {
+            margin-top: 1.4rem;
+        }
+        .contact-submit button {
+            padding: 0.85rem 2.3rem;
+            border-radius: 999px;
+            background: var(--golden-sand);
+            color: #111827;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+        .contact-submit button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+            background: #facc15;
+        }
+        .contact-submit button i {
+            font-size: 0.95rem;
+        }
+        .contact-map-card {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+            background: #020617;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .contact-map-card iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            display: block;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-form-card { order: 1; }
+            .contact-map-card { order: 2; }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--rich-black);
+            color: #ccc;
+            padding: 3rem 0;
+            border-top: 4px solid var(--cobalt);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo h2 {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .footer-logo .gold {
+            color: var(--golden-sand);
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--golden-sand);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        @media (min-width: 1024px) {
+            .desktop-menu {
+                display: flex;
+            }
+            .right-controls .menu-icon {
+                display: none;
+            }
+        }
+        @media (max-width: 1023px) {
+            .phone-mini {
+                display: none !important;
+            }
+            .right-controls {
+                gap: 0;
+                min-width: 44px;
+                justify-content: flex-end;
+            }
+        }
+
+                /* Tablet and below */
+        @media (max-width: 768px) {
+            .hero-grid {
+                flex-direction: column;
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+            .hero-content h2 {
+                font-size: 1.85rem;
+            }
+            .hero-content p:not(.hero-proof) {
+                font-size: 1rem;
+                margin: 1rem 0 1.5rem;
+            }
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-primary, .btn-outline {
+                justify-content: center;
+                min-height: 48px;
+            }
+            .hero-dots { bottom: 1.25rem; }
+            .scroll-down {
+                bottom: 3.5rem;
+                font-size: 0.8rem;
+                padding: 6px 16px;
+            }
+            .card-item {
+                height: auto;
+                min-height: 75vh;
+                position: sticky;
+            }
+            .card-inner {
+                height: 90vh;
+                max-height: 90vh;
+                grid-template-columns: 1fr;
+                grid-template-rows: 200px 1fr;
+            }
+            .stack-section .card-content {
+                order: 2;
+                padding: 1.25rem 0 0.5rem 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                overflow: visible;
+            }
+            .stack-section .card-img-wrap {
+                order: 1;
+                min-height: 200px;
+                height: 200px;
+            }
+            .stack-section .main-title { font-size: 1.75rem; }
+            .stack-section .card-desc {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+        }
+
+        /* Mobile-first: small phones and shared mobile */
+        @media (max-width: 600px) {
+            .hero {
+                min-height: 100vh;
+                min-height: 100dvh;
+            }
+            .hero-content h2 { font-size: 1.65rem; line-height: 1.2; }
+            .hero-proof { font-size: 0.85rem; }
+            .services-head {
+                padding: 3rem 1rem 2.5rem;
+            }
+            .services-head .services-title { font-size: 1.6rem; }
+            .services-head .services-lead { font-size: 0.95rem; }
+            .about-intro .about-intro-content { padding: 2rem 1rem 2.5rem; }
+            .about-intro .about-intro-content h2 { font-size: 1.5rem; }
+            .about-intro .about-intro-content p { font-size: 0.95rem; }
+            .about-intro .about-intro-stats { gap: 1.5rem 2rem; }
+            .svc-row-content { padding: 1.75rem 1rem; }
+            .svc-row-content h3 { font-size: 1.25rem; }
+            .svc-row-content p { font-size: 0.9rem; }
+            .stack-section .card-content h3 { font-size: 1.25rem; }
+            .stack-section { padding: 3rem 0 3.5rem; }
+            .stack-heading { margin-bottom: 2rem; }
+            .stack-heading .main-title { font-size: 1.5rem; }
+            .designs-section { padding: 3rem 0; }
+            .designs-section .section-head h2 { font-size: 1.75rem; }
+            .designs-section .section-head { margin-bottom: 1.75rem; }
+            .testimonials-section { padding: 3rem 0; }
+            .testimonials-head h2 { font-size: 1.6rem; }
+            .testimonials-head { margin-bottom: 1.75rem; }
+            .testimonial-card { padding: 1.4rem 1.2rem; }
+            .contact-section { padding: 3rem 0; }
+            .contact-head h2 { font-size: 1.6rem; }
+            .contact-head { margin-bottom: 1.75rem; }
+            .contact-form-card { padding: 1.5rem 1.25rem; }
+            .contact-form-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-map-card iframe { min-height: 260px; }
+            .contact-submit button {
+                width: 100%;
+                min-height: 48px;
+                justify-content: center;
+            }
+            .stack-section .card-view-link {
+                min-height: 44px;
+                align-items: center;
+            }
+            footer { padding: 2rem 0; }
+            .footer-grid { gap: 1.5rem; }
+            .footer-logo h2 { font-size: 1.5rem; }
+            .copyright { margin-top: 2rem; font-size: 0.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h2 { font-size: 1.5rem; }
+            .services-extraordinary .services-inner { padding: 0 1rem; }
+            .stack-container { padding: 0 1rem 4rem; }
+            .designs-section .container { padding: 0 1rem; }
+            .testimonials-section .container { padding: 0 1rem; }
+            .contact-section .container { padding: 0 1rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <h1>PRONAK<span>CONSTRUCTION</span></h1>
+            </div>
+            <div class="desktop-menu">
+                <a href="#home">Home</a>
+                <a href="#about">About us</a>
+                <a href="#extraordinary-services">Our Services</a>
+                <a href="#stack-section">Projects</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="right-controls">
+                <a href="tel:+254799558661" class="phone-mini"><i class="fas fa-phone-alt"></i> 0799 558661</a>
+                <button class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="overlay" id="overlay"></div>
+    <div class="side-menu" id="sideMenu">
+        <button class="close-btn" id="closeMenu"><i class="fas fa-times"></i></button>
+        <div class="side-menu-links">
+            <a href="#home">Home</a>
+            <a href="#about">About us</a>
+            <a href="#extraordinary-services">Our Services</a>
+            <a href="#stack-section">Projects</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+    </div>
+
+    <!-- Hero Section ? construction carousel (Unsplash high-res) -->
+    <section class="hero" id="home">
+        <div class="hero-carousel">
+            <div class="hero-carousel-track" id="heroTrack">
+                <div class="hero-carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=1920&q=90&fit=crop" alt="Construction tower and crane">
+                </div>
+                <div class="hero-carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?w=1920&q=90&fit=crop" alt="Modern house with pool and lounge">
+                </div>
+                <div class="hero-carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1608507778696-8f7e5744a258?w=1920&q=90&fit=crop" alt="Building under construction">
+                </div>
+                <div class="hero-carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1531971589569-0d9370cbe1e5?w=1920&q=90&fit=crop" alt="Lighted house beside trees">
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <a href="tel:+254799558661" class="hero-phone-mobile" aria-label="Call Pronak Construction">
+                    <i class="fas fa-phone-alt"></i> 0799 558661
+                </a>
+                <h2>Pronak Construction Limited ? <span class="highlight">roofing &amp; construction in Kenya</span></h2>
+                <p class="hero-proof">Roofing contractors ? General construction ? Nairobi County</p>
+                <p>We specialize in roofing and general construction with exemplary performance in service delivery. Professional, honest, and compliant?from design and county approvals to quality builds. 5.0 rating ? 26 reviews.</p>
+                <div class="btn-group">
+                    <a href="#contact" class="btn-primary"><i class="fas fa-file-invoice"></i> Get a Quote</a>
+                    <a href="#about" class="btn-outline"><i class="fas fa-arrow-right"></i> About us</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-dots" id="heroDots" aria-label="Carousel slide indicator">
+            <button type="button" class="hero-dot active" data-index="0" aria-label="Slide 1"></button>
+            <button type="button" class="hero-dot" data-index="1" aria-label="Slide 2"></button>
+            <button type="button" class="hero-dot" data-index="2" aria-label="Slide 3"></button>
+            <button type="button" class="hero-dot" data-index="3" aria-label="Slide 4"></button>
+        </div>
+
+        <a href="#stack-section" class="scroll-down">
+            <span>discover more</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section (below Hero, above Services) -->
+    <section class="about-intro" id="about">
+        <div class="about-intro-inner">
+            <div class="about-intro-image">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop" alt="Pronak Construction Limited ? roofing and construction Kenya">
+            </div>
+            <div class="about-intro-content">
+                <p class="eyebrow">About us</p>
+                <h2>Pronak Construction <span>Limited</span> ? Nairobi, Kenya</h2>
+                <p>Pronak Construction Limited is a company that specializes in roofing contractors and general construction. The company has shown exemplary performance in services and products delivery.</p>
+                <p>We are located in Kenya, Nairobi County. Our physical address is Libra House, Mombasa Road, Nairobi. We take clients through the design phase, county approval of drawings, and construction with a focus on professionalism, honesty, and compliance. Contact us today for reliable roofing and building services.</p>
+                <div class="about-intro-stats">
+                    <div class="stat">
+                        <span class="stat-value">Roofing</span>
+                        <span class="stat-label">Specialists</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">Nairobi</span>
+                        <span class="stat-label">Libra House, Mombasa Road</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">5.0</span>
+                        <span class="stat-label">26 reviews</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-extraordinary" id="extraordinary-services">
+        <div class="services-inner">
+            <header class="services-head">
+                <h2 class="services-title">Our Services</h2>
+                <p class="services-lead">Roofing contractors and general construction in Nairobi, Kenya.</p>
+            </header>
+
+            <article class="svc-row">
+                <div class="svc-row-img">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop" alt="Roofing construction" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop';">
+                </div>
+                <div class="svc-row-content">
+                    <span class="svc-num">01</span>
+                    <h3>Roofing Contractors</h3>
+                    <p>We specialize in roofing construction across Nairobi and Kenya. Quality materials, professional installation, and compliance with county approvals. From design phase through to completion.</p>
+                </div>
+            </article>
+
+            <article class="svc-row alt">
+                <div class="svc-row-img">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="General construction" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop';">
+                </div>
+                <div class="svc-row-content">
+                    <span class="svc-num">02</span>
+                    <h3>General Construction</h3>
+                    <p>Full building and construction services. We take you through design, county approval of drawings, and construction with professionalism, honesty, and compliance. Exemplary performance in service delivery.</p>
+                </div>
+            </article>
+
+            <article class="svc-row">
+                <div class="svc-row-img">
+                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=600&fit=crop" alt="Residential and housing" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop';">
+                </div>
+                <div class="svc-row-content">
+                    <span class="svc-num">03</span>
+                    <h3>Design &amp; Planning</h3>
+                    <p>We guide you through the design phase and county approval of drawings. Professional input from concept to approved plans.</p>
+                </div>
+            </article>
+
+            <article class="svc-row alt">
+                <div class="svc-row-img">
+                    <img src="https://images.unsplash.com/photo-1581094794329-8114a89e5f9f?w=800&h=600&fit=crop" alt="Roads and infrastructure" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop';">
+                </div>
+                <div class="svc-row-content">
+                    <span class="svc-num">04</span>
+                    <h3>County Approvals &amp; Permitting</h3>
+                    <p>We assist with county approval of drawings and permits so your project stays compliant and on track.</p>
+                </div>
+            </article>
+
+            <article class="svc-row">
+                <div class="svc-row-img">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop" alt="Water, sanitation, lodges" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop';">
+                </div>
+                <div class="svc-row-content">
+                    <span class="svc-num">05</span>
+                    <h3>Flexible Payment Plans</h3>
+                    <p>We offer flexible payment plans and workable construction models in phases. Ideal for self-financing clients?we form a working partnership with you.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- How we work -->
+    <section class="how-we-work" id="how-we-work">
+        <div class="container">
+            <header class="how-we-work-head">
+                <h2>Why <span>Pronak Construction</span></h2>
+                <p>Professional, honest, and compliant. In a country full of quacks and dishonest service providers, we stand out.</p>
+            </header>
+            <div class="how-we-work-steps">
+                <div class="how-we-work-step">
+                    <div class="how-we-work-step-num">1</div>
+                    <h3>Professionalism &amp; honesty</h3>
+                    <p>We take you through design phase, county approval of drawings, and construction with transparency.</p>
+                </div>
+                <div class="how-we-work-step">
+                    <div class="how-we-work-step-num">2</div>
+                    <h3>Quality workmanship</h3>
+                    <p>Exemplary performance in service delivery. Best construction company in Kenya and East Africa for general contracting.</p>
+                </div>
+                <div class="how-we-work-step">
+                    <div class="how-we-work-step-num">3</div>
+                    <h3>Flexible payments</h3>
+                    <p>Flexible payment plans and workable construction models in phases for self-financing clients.</p>
+                </div>
+                <div class="how-we-work-step">
+                    <div class="how-we-work-step-num">4</div>
+                    <h3>Contact us today</h3>
+                    <p>Libra House, Mombasa Road, Nairobi. 0799 558661 ? pronakltd@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Card Stack Section with PROJECT IMAGES (4) -->
+    <section class="stack-section" id="stack-section">
+        <div class="stack-heading">
+            <div class="eyebrow">Our Work</div>
+            <h2 class="main-title">PROJECTS / PORTFOLIO</h2>
+        </div>
+
+        <div class="stack-container">
+            <!-- Card 1: KMA Headquarters -->
+            <div class="card-item">
+                <div class="card-inner">
+                    <div class="card-content">
+                        <div>
+                            <div class="text-5xl display mb-2" style="color: #dc2626;">01</div>
+                            <h3>ROOFING &amp; STRUCTURAL</h3>
+                            <p class="text-sm mt-4 opacity-70">Portfolio</p>
+                        </div>
+                        <div class="text-gray-400 card-desc">Roofing and structural works. Quality materials and professional installation across Nairobi and Kenya.</div>
+                        <a href="#" class="card-view-link">View project <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i></a>
+                    </div>
+                    <div class="card-img-wrap">
+                        <img src="assets/latest-tower.png" alt="KMA Headquarters Upper Hill" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1748440290965-7634ed801f08?w=800&h=600&fit=crop&auto=format'">
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2: Kenya Railways Housing Kibera -->
+            <div class="card-item">
+                <div class="card-inner">
+                    <div class="card-content">
+                        <div>
+                            <div class="text-5xl display mb-2" style="color: #16a34a;">02</div>
+                            <h3>RESIDENTIAL &amp; COMMERCIAL</h3>
+                            <p class="text-sm mt-4 opacity-70">Portfolio</p>
+                        </div>
+                        <div class="text-gray-400 card-desc">Residential and commercial construction. From design and county approvals to quality builds.</div>
+                        <a href="#" class="card-view-link">View project <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i></a>
+                    </div>
+                    <div class="card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&auto=format" alt="Kenya Railways Housing Kibera" class="card-img">
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3: Sondu Miriu Hydropower -->
+            <div class="card-item">
+                <div class="card-inner">
+                    <div class="card-content">
+                        <div>
+                            <div class="text-5xl display mb-2" style="color: #2563eb;">03</div>
+                            <h3>DESIGN &amp; APPROVALS</h3>
+                            <p class="text-sm mt-4 opacity-70">Portfolio</p>
+                        </div>
+                        <div class="text-gray-400 card-desc">Design phase and county approval of drawings. We guide you through the process with professionalism.</div>
+                        <a href="#" class="card-view-link">View project <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i></a>
+                    </div>
+                    <div class="card-img-wrap">
+                        <img src="assets/latest-lakefront.png" alt="Sondu Miriu Hydropower" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1581094794329-8114a89e5f9f?w=800&h=600&fit=crop&auto=format'">
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4: Kenya National Assembly -->
+            <div class="card-item">
+                <div class="card-inner">
+                    <div class="card-content">
+                        <div>
+                            <div class="text-5xl display mb-2" style="color: #d4af37;">04</div>
+                            <h3>GENERAL CONTRACTING</h3>
+                            <p class="text-sm mt-4 opacity-70">Portfolio</p>
+                        </div>
+                        <div class="text-gray-400 card-desc">General contracting with flexible payment plans. Reliable construction company for Kenya and East Africa.</div>
+                        <a href="#" class="card-view-link">View project <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i></a>
+                    </div>
+                    <div class="card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop&auto=format" alt="Kenya National Assembly Chambers" class="card-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles / Blog -->
+    <section class="designs-section" id="articles-section">
+        <div class="container">
+            <div class="section-head">
+                <h2>Q &amp; A / FAQ</h2>
+                <p>We believe in honest and transparent communication. Here are some answers to common questions.</p>
+            </div>
+            <div class="designs-grid">
+                <article class="design-card">
+                    <div class="design-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=450&fit=crop" alt="Technology and construction">
+                        <span class="design-card-tag">Blog</span>
+                        <div class="design-card-brand hide-on-card">PRONAK CONSTRUCTION LIMITED</div>
+                    </div>
+                    <div class="design-card-body">
+                        <h3>How Technology Is Changing Construction Cost Control</h3>
+                        <p>From digital measurements to real-time cost tracking, technology is reshaping how construction budgets are planned.</p>
+                    </div>
+                </article>
+                <article class="design-card">
+                    <div class="design-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=450&fit=crop" alt="Flood resilience and elevated design" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=450&fit=crop';">
+                        <span class="design-card-tag">Blog</span>
+                        <div class="design-card-brand hide-on-card">PRONAK CONSTRUCTION LIMITED</div>
+                    </div>
+                    <div class="design-card-body">
+                        <h3>Why Elevating Your House Matters: An Architect's Perspective After the Recent Nairobi Flooding</h3>
+                        <p>Recent flooding in Nairobi has shown that flood resilience starts with design. Elevating homes above?</p>
+                    </div>
+                </article>
+                <article class="design-card">
+                    <div class="design-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1608507778696-8f7e5744a258?w=600&h=450&fit=crop" alt="Site dewatering">
+                        <span class="design-card-tag">Blog</span>
+                        <div class="design-card-brand hide-on-card">PRONAK CONSTRUCTION LIMITED</div>
+                    </div>
+                    <div class="design-card-body">
+                        <h3>Mastering Construction Site Dewatering: A Comprehensive Guide for the Rainy Season</h3>
+                        <p>Rainy seasons can quickly turn a construction site into a muddy, unstable workspace. A comprehensive guide for the rainy season.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-head">
+                <h2>Pronak Construction Limited <span>Reviews</span></h2>
+                <p>5.0 ? 26 reviews on Google. See what our clients say.</p>
+            </div>
+            <div class="testimonials-grid testimonials-google-style">
+                <article class="testimonial-card">
+                    <div class="testimonial-person">
+                        <div class="testimonial-avatar">B</div>
+                        <div class="testimonial-meta">
+                            <strong>Brenda Gakii</strong>
+                            <span class="testimonial-meta-line">1 review ? a year ago</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars" aria-label="5 stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">In a country full of quacks and dishonest service providers, I would say this team stands out. They are professional, honest and compliant. They took me through design phase, county approval of drawings and other steps with transparency.</p>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-person">
+                        <div class="testimonial-avatar">P</div>
+                        <div class="testimonial-meta">
+                            <strong>Patrick Mwangi</strong>
+                            <span class="testimonial-meta-line">1 review ? 2 years ago</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars" aria-label="5 stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">Best construction company in Kenya and East Africa for general contracting.</p>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-person">
+                        <div class="testimonial-avatar">K</div>
+                        <div class="testimonial-meta">
+                            <strong>Kendi Gitari</strong>
+                            <span class="testimonial-meta-line">1 review ? a year ago</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars" aria-label="5 stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">Pronak is a reliable construction company and offers flexible payment plans for their services.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get in Touch -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-head">
+                <h2>Contact Us</h2>
+                <p>We are located in Nairobi, Kenya. Reach out for a free site visit or quote.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-form-card">
+                    <h3>Get in touch with Pronak Construction Limited</h3>
+                    <form action="#" method="post" novalidate>
+                        <div class="contact-form-grid">
+                            <div class="form-field">
+                                <label for="name">Full name</label>
+                                <input id="name" name="name" type="text" placeholder="Your name">
+                            </div>
+                            <div class="form-field">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="email" placeholder="pronakltd@gmail.com">
+                            </div>
+                            <div class="form-field">
+                                <label for="phone">Phone</label>
+                                <input id="phone" name="phone" type="tel" placeholder="0799 558661">
+                            </div>
+                            <div class="form-field">
+                                <label for="project-type">Project type</label>
+                                <input id="project-type" name="projectType" type="text" placeholder="Residential, commercial, mixed?use?">
+                            </div>
+                            <div class="form-field full">
+                                <label for="message">Project details</label>
+                                <textarea id="message" name="message" placeholder="Location, timelines, approximate budget?"></textarea>
+                            </div>
+                        </div>
+                        <div class="contact-submit">
+                            <button type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                                Send enquiry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="contact-map-card">
+                    <iframe
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.740985837119!2d36.863907074724715!3d-1.3315151986558595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f11bc8af77171%3A0xc66d0b8288b3b875!2sPronak%20Construction%20Limited!5e0!3m2!1sen!2ske!4v1773221360850!5m2!1sen!2ske">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AxisFit Interiors Partner -->
+    <section class="partner-section" style="background: linear-gradient(145deg, #0f1420 0%, #1a2335 100%); padding: 4rem 0; border-top: 1px solid rgba(212,175,55,0.2);">
+        <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; text-align: center;">
+            <p class="eyebrow" style="font-size: 0.75rem; letter-spacing: 0.2em; color: var(--golden-sand); margin-bottom: 0.5rem;">PRONAK CONSTRUCTION LIMITED</p>
+            <h2 style="font-size: 1.75rem; color: #f9fafb; margin-bottom: 0.75rem;">Roofing Contractors ? reliable and professional</h2>
+            <p style="color: #9ca3af; margin-bottom: 1.5rem; line-height: 1.6;">Libra House, Mombasa Road, Nairobi, Kenya. Tel: 0799 558661 ? pronakltd@gmail.com</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left; margin-top: 1.5rem;">
+                <div><strong style="color: var(--golden-sand);">Quality Workmanship</strong><br><span style="color: #9ca3af; font-size: 0.9rem;">Professional, honest, compliant?exemplary performance</span></div>
+                <div><strong style="color: var(--golden-sand);">Flexible Payments</strong><br><span style="color: #9ca3af; font-size: 0.9rem;">Payment plans and phased construction for self-financing clients</span></div>
+                <div><strong style="color: var(--golden-sand);">Design &amp; Approval</strong><br><span style="color: #9ca3af; font-size: 0.9rem;">Design phase and county approval of drawings</span></div>
+                <div><strong style="color: var(--golden-sand);">Client Satisfaction</strong><br><span style="color: #9ca3af; font-size: 0.9rem;">5.0 rating, 26 reviews on Google</span></div>
+            </div>
+            <p style="margin-top: 1.5rem;"><a href="#contact" style="color: var(--golden-sand); font-weight: 600;">Get a Quote</a> &nbsp;|&nbsp; <a href="#contact" style="color: var(--golden-sand); font-weight: 600;">Contact Us</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <h2>PRONAK<span class="gold">CONSTRUCTION</span></h2>
+                <p>Reliable construction company in Kenya, specializing in roofing contractors and general contracting. Located at Libra House, Mombasa Road, Nairobi.</p>
+            </div>
+            <div class="footer-links">
+                <h4 style="color:white;">Company</h4>
+                <a href="#home">Home</a>
+                <a href="#about">About us</a>
+                <a href="#extraordinary-services">Our Services</a>
+                <a href="#stack-section">Projects</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="footer-links">
+                <h4 style="color:white;">Contact</h4>
+                <a href="tel:+254799558661"><i class="fas fa-phone-alt"></i> 0799 558661</a>
+                <a href="mailto:pronakltd@gmail.com"><i class="fas fa-envelope"></i> pronakltd@gmail.com</a>
+            </div>
+            <div class="footer-links">
+                <h4 style="color:white;">Location</h4>
+                <span style="color: #9ca3af;">Libra House, Mombasa Road, Nairobi, Kenya</span>
+            </div>
+        </div>
+        <div class="copyright">? 2025 Pronak Construction Limited. All Rights Reserved.</div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Side menu functionality
+        (function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const sideMenu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            const closeBtn = document.getElementById('closeMenu');
+
+            function openMenu() {
+                sideMenu.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            menuToggle.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
+            
+            window.addEventListener('keydown', (e) => { 
+                if (e.key === 'Escape') closeMenu(); 
+            });
+            
+            window.addEventListener('resize', () => { 
+                if (window.innerWidth >= 1024) closeMenu(); 
+            });
+        })();
+
+        // Hero image carousel ? auto-slide and dot controls
+        (function() {
+            const track = document.getElementById('heroTrack');
+            const dotsContainer = document.getElementById('heroDots');
+            if (!track || !dotsContainer) return;
+
+            const slides = track.querySelectorAll('.hero-carousel-slide');
+            const dots = dotsContainer.querySelectorAll('.hero-dot');
+            const total = slides.length;
+            const intervalMs = 5500;
+            let currentIndex = 0;
+            let autoTimer = null;
+
+            function goTo(index) {
+                currentIndex = (index + total) % total;
+                track.style.transform = 'translateX(-' + currentIndex * 100 + '%)';
+                dots.forEach(function(dot, i) {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function next() {
+                goTo(currentIndex + 1);
+            }
+
+            function startAuto() {
+                stopAuto();
+                autoTimer = setInterval(next, intervalMs);
+            }
+
+            function stopAuto() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            dots.forEach(function(dot, i) {
+                dot.addEventListener('click', function() {
+                    goTo(i);
+                    startAuto();
+                });
+            });
+
+            startAuto();
+        })();
+
+        // GSAP Card Stack Animation
+        gsap.registerPlugin(ScrollTrigger);
+        
+        function initCardStack() {
+            const cards = gsap.utils.toArray('.card-item');
+            cards.forEach((card, i) => {
+                const nextCard = cards[i + 1];
+                if (nextCard) {
+                    gsap.to(card.querySelector('.card-inner'), {
+                        scale: 0.9,
+                        opacity: 0.4,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: nextCard,
+                            start: 'top bottom',
+                            end: 'top 10vh',
+                            scrub: true
+                        }
+                    });
+                }
+            });
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCardStack);
+        } else {
+            initCardStack();
+        }
+    </script>
+</body>
+</html>
